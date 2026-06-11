@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Question...</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6ea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 440px;
+            width: 90%;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            height: 50px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #38b000;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #ff4d6d;
+            color: white;
+            position: absolute;
+            left: 55%;
+        }
+
+        #signContractBtn, #checkMailBtn {
+            background-color: #1e6091;
+            color: white;
+            width: 100%;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(30, 96, 145, 0.3);
+        }
+
+        #signContractBtn:active, #checkMailBtn:active {
+            transform: scale(0.98);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #success-screen h1 {
+            color: #38b000;
+            text-align: center;
+        }
+        
+        .gif-placeholder {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        #contract-status {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #d90429;
+            font-size: 1.2rem;
+            animation: popIn 0.3s ease-out forward;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Styles for the final screen (image display) */
+        #final-screen .container {
+            max-width: 250px; /* Adjust based on image aspect ratio */
+            padding: 15px;
+        }
+
+        .snapshot-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 216%; /* Aspect ratio of typical phone screens */
+            background-color: black;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+        }
+
+        .snapshot-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .snapshot-text {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            width: 80%;
+            line-height: 1.2;
+        }
+
+        .snapshot-penguin {
+            position: absolute;
+            bottom: 5%;
+            left: 30%;
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        .snapshot-arrow {
+            position: absolute;
+            bottom: 12%;
+            left: 60%;
+            color: white;
+            font-size: 1.5rem;
+            transform: rotate(-15deg);
+        }
+
+        .snapshot-timestamp {
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: sans-serif;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="proposal-screen" class="container">
+        <div class="gif-placeholder">🐧❤️</div>
+        <h1>Tamu... will you be my penguin?</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="acceptProposal()">Yes</button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+        </div>
+    </div>
+
+    <div id="success-screen" class="container hidden">
+        <div class="gif-placeholder">📜✍️</div>
+        <h1>It's official!</h1>
+        <p>It's official: you've successfully walked into the penguin trap...your decision making skills are flawless...i want to send laughing emoji but i dont know how to do it using this...o refunds or exchanges allowed, but you have just unlocked a lifetime supply of affection, stolen hoodies, and a kabelo or teaspoon who is incredibly happy you said yes.</p>
+        
+        <button id="signContractBtn" onclick="signContract()">Sign Contract</button>
+        
+        <div id="contract-status" class="hidden">
+            <div>Contract Signed & Locked! 🔒</div>
+            <button id="checkMailBtn" onclick="showFinalPage()">Check Your Mail</button>
+        </div>
+    </div>
+
+    <div id="final-screen" class="container hidden">
+        <div class="snapshot-container">
+            <img src="YOUR_IMAGE_BASE64_OR_URL_HERE" alt="Tamu Snapshot" class="snapshot-image">
+            <div class="snapshot-text">look at my penguin you boy</div>
+            <div class="snapshot-penguin">🐧</div>
+            <div class="snapshot-arrow">↗️</div>
+            <div class="snapshot-timestamp">7:32</div>
+        </div>
+    </div>
+
+    <script>
+        function moveNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Get random coordinates within the viewport boundaries
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            // Generate coordinates (ensuring they stay on screen)
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            
+            // Move the button completely out of its container relative to the screen
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function acceptProposal() {
+            document.getElementById('proposal-screen').classList.add('hidden');
+            document.getElementById('success-screen').classList.remove('hidden');
+        }
+
+        function signContract() {
+            document.getElementById('contract-status').classList.remove('hidden');
+            document.getElementById('signContractBtn').classList.add('hidden');
+        }
+
+        function showFinalPage() {
+            document.getElementById('success-screen').classList.add('hidden');
+            document.getElementById('final-screen').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
