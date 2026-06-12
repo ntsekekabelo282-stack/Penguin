@@ -73,7 +73,7 @@
             left: 55%;
         }
 
-        #signContractBtn, #checkMailBtn {
+        #signContractBtn, #checkMailBtn, #nextPageBtn {
             background-color: #1e6091;
             color: white;
             width: 100%;
@@ -84,7 +84,7 @@
             box-shadow: 0 4px 10px rgba(30, 96, 145, 0.3);
         }
 
-        #signContractBtn:active, #checkMailBtn:active {
+        #signContractBtn:active, #checkMailBtn:active, #nextPageBtn:active {
             transform: scale(0.98);
         }
 
@@ -107,7 +107,7 @@
             font-weight: bold;
             color: #d90429;
             font-size: 1.2rem;
-            animation: popIn 0.3s ease-out forward;
+            animation: popIn 0.3s ease-out forwards;
         }
 
         @keyframes popIn {
@@ -115,9 +115,9 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Styles for the final screen (image display) */
+        /* Snapshot screen container centering adjustments */
         #final-screen .container {
-            max-width: 250px; /* Adjust based on image aspect ratio */
+            max-width: 280px;
             padding: 15px;
         }
 
@@ -180,6 +180,57 @@
             font-size: 0.9rem;
         }
 
+        /* ================= PAGE 4 CUSTOM STYLES ================= */
+        #page-4-screen {
+            background-color: #fce4ec; /* Soft, warm background color for the final sweet scene */
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            overflow-y: auto;
+        }
+
+        .page-4-container {
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .sweet-text {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .image-container {
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .profile-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .your-extra-space {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -214,6 +265,20 @@
             <div class="snapshot-arrow">↗️</div>
             <div class="snapshot-timestamp">7:32</div>
         </div>
+        <button id="nextPageBtn" onclick="goToPage4()">Next ❤️</button>
+    </div>
+
+    <div id="page-4-screen" class="hidden">
+        <div class="page-4-container">
+            <p class="sweet-text">ive always wanted a penguin for so long...am hoping third times a charm....can i have penguin?</p>
+
+            <div class="image-container">
+                <img src="murr.jpg" alt="Us Smiling" class="profile-image">
+            </div>
+
+            <div class="your-extra-space">
+                </div>
+            </div>
     </div>
 
     <script>
@@ -248,72 +313,12 @@
         function showFinalPage() {
             document.getElementById('success-screen').classList.add('hidden');
             document.getElementById('final-screen').classList.remove('hidden');
-        }<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 4</title>
-    <style>
-        /* All the styling is packed right here */
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fce4ec; /* Soft, warm background color */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
         }
 
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 20px;
+        function goToPage4() {
+            document.getElementById('final-screen').classList.add('hidden');
+            document.getElementById('page-4-screen').classList.remove('hidden');
         }
-
-        .sweet-text {
-            font-size: 1.4rem;
-            color: #4a4a4a;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        .image-container {
-            margin-bottom: 40px;
-        }
-
-        .profile-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px; /* Smooth rounded corners for the photo */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow around the photo */
-        }
-
-        .your-extra-space {
-            margin-top: 20px;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <p class="sweet-text">ive always wanted a penguin for so long...am hoping third times a charm....can i have penguin?</p>
-
-        <div class="image-container">
-            <img src="murr.jpg" alt="Us Smiling" class="profile-image">
-        </div>
-
-        <div class="your-extra-space">
-            </div>
-        </div>
-
-</body>
-</html>
     </script>
 </body>
 </html>
