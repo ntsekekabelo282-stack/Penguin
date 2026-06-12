@@ -88,6 +88,7 @@
             transform: scale(0.98);
         }
 
+        /* Essential utility class to securely hide background views */
         .hidden {
             display: none !important;
         }
@@ -115,7 +116,7 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Snapshot screen container centering adjustments */
+        /* Snapshot specific layout settings */
         #final-screen .container {
             max-width: 280px;
             padding: 15px;
@@ -125,7 +126,7 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 216%; /* Aspect ratio of typical phone screens */
+            padding-bottom: 216%; 
             background-color: black;
             border-radius: 10px;
             overflow: hidden;
@@ -181,41 +182,17 @@
         }
 
         /* ================= PAGE 4 CUSTOM STYLES ================= */
-        #page-4-screen {
-            background-color: #fce4ec; /* Soft, warm background color for the final sweet scene */
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            overflow-y: auto;
-        }
-
-        .page-4-container {
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            padding: 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
         .sweet-text {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             color: #4a4a4a;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-style: italic;
             text-align: center;
         }
 
         .image-container {
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             width: 100%;
         }
 
@@ -223,12 +200,12 @@
             max-width: 100%;
             height: auto;
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
         .your-extra-space {
-            margin-top: 20px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 5px;
             width: 100%;
         }
     </style>
@@ -268,33 +245,27 @@
         <button id="nextPageBtn" onclick="goToPage4()">Next ❤️</button>
     </div>
 
-    <div id="page-4-screen" class="hidden">
-        <div class="page-4-container">
-            <p class="sweet-text">ive always wanted a penguin for so long...am hoping third times a charm....can i have penguin?</p>
+    <div id="page-4-screen" class="container hidden">
+        <p class="sweet-text">ive always wanted a penguin for so long...am hoping third times a charm....can i have penguin?</p>
 
-            <div class="image-container">
-                <img src="murr.jpg" alt="Us Smiling" class="profile-image">
-            </div>
+        <div class="image-container">
+            <img src="murr.jpg" alt="Us Smiling" class="profile-image">
+        </div>
 
-            <div class="your-extra-space">
-                </div>
+        <div class="your-extra-space">
             </div>
-    </div>
+        </div>
 
     <script>
         function moveNoButton() {
             const noBtn = document.getElementById('noBtn');
-            
-            // Get random coordinates within the viewport boundaries
             const padding = 50;
             const maxX = window.innerWidth - noBtn.offsetWidth - padding;
             const maxY = window.innerHeight - noBtn.offsetHeight - padding;
             
-            // Generate coordinates (ensuring they stay on screen)
             const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
             const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
             
-            // Move the button completely out of its container relative to the screen
             noBtn.style.position = 'fixed';
             noBtn.style.left = randomX + 'px';
             noBtn.style.top = randomY + 'px';
@@ -315,6 +286,7 @@
             document.getElementById('final-screen').classList.remove('hidden');
         }
 
+        // Smooth switch to the newly styled Page 4
         function goToPage4() {
             document.getElementById('final-screen').classList.add('hidden');
             document.getElementById('page-4-screen').classList.remove('hidden');
