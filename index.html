@@ -88,7 +88,7 @@
             transform: scale(0.98);
         }
 
-        /* Essential utility class to securely hide background views */
+        /* Strict utility rule to ensure background screens stay completely invisible */
         .hidden {
             display: none !important;
         }
@@ -254,9 +254,17 @@
 
         <div class="your-extra-space">
             </div>
-        </div>
+    </div>
 
     <script>
+        // Force the layout order strictly when the window opens
+        window.onload = function() {
+            document.getElementById('proposal-screen').classList.remove('hidden');
+            document.getElementById('success-screen').classList.add('hidden');
+            document.getElementById('final-screen').classList.add('hidden');
+            document.getElementById('page-4-screen').classList.add('hidden');
+        };
+
         function moveNoButton() {
             const noBtn = document.getElementById('noBtn');
             const padding = 50;
@@ -286,7 +294,6 @@
             document.getElementById('final-screen').classList.remove('hidden');
         }
 
-        // Smooth switch to the newly styled Page 4
         function goToPage4() {
             document.getElementById('final-screen').classList.add('hidden');
             document.getElementById('page-4-screen').classList.remove('hidden');
